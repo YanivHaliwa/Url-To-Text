@@ -69,3 +69,7 @@ This tool should be used responsibly and ethically. Ensure you have the right to
 ## Disclaimer:
 
 The developers of this tool are not responsible for any misuse or for any damages that may result from the use of this tool. Use at your own risk and discretion.
+
+## Author
+
+Created by [Yaniv Haliwa](https://github.com/YanivHaliwa) for security testing and educational purposes.

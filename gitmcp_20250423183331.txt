@@ -1,0 +1,42 @@
+GitMCP
+Instantly create a
+Remote MCP server
+for any GitHub repository
+Simply change the domain from
+github.com
+or
+github.io
+to
+gitmcp.io
+and get instant AI context for any GitHub repository.
+Create MCP URL
+Replace
+with
+in any repository URL.
+Add to AI Assistant
+Configure your AI tool to use the GitMCP URL as a custom MCP server.
+Enhanced AI Coding
+Your AI now understands your repository's context for more accurate and helpful responses.
+With GitHub Pages
+GitMCP works seamlessly with
+GitHub Pages
+. Here's an example:
+Your browser does not support the video tag.
+A GitHub Repo
+GitMCP works with
+any public GitHub repository
+What is GitMCP?
+GitMCP creates a dedicated Model Context Protocol (MCP) server for any GitHub project, enabling AI assistants to understand your code in context.
+Code Understanding
+AI assistants gain a deep context of the code repo, reading
+llms.txt
+,
+llms-full.txt
+readme.md
+and more, making their responses more accurate and relevant.
+Instant Setup
+No complex configuration needed. Just point to your GitHub repository and connect your AI tools.
+Universal Access
+Works seamlessly with any public GitHub repository and GitHub Pages, making your documentation and code accessible to AI tools.
+Compatible With
+Works with all popular MCP-compatible AI tools

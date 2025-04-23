@@ -12,10 +12,7 @@ from collections import OrderedDict
 
 # Get the current directory and set up the textfiles directory
 current_dir = os.getcwd()
-textfiles = os.path.join(current_dir, "texts")
-
-# Ensure the textfiles directory exists
-os.makedirs(textfiles, exist_ok=True)
+location = current_dir
 
 def extract_text_from_url(url):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36'}
@@ -50,9 +47,8 @@ def extract_text_from_url(url):
     # Remove duplicate lines
     text = '\n'.join(OrderedDict.fromkeys(text.splitlines()))
 
-    # Format for terminal display
-    term_width = shutil.get_terminal_size((80, 20)).columns
-    newtext = "\n".join(line.rjust(term_width) for line in text.split("\n"))
+    # Use the clean text without right-justification
+    newtext = text
 
     if text:
         print(newtext)
@@ -61,23 +57,37 @@ def extract_text_from_url(url):
 
     # Prepare filename
     title = soup.title.string if soup.title else "No Title"
-    title = re.sub(r'[^\w\s-]', '_', title).strip()[:50]  # Limit title length
+    # Remove special chars
+    title = re.sub(r'[^\w\s-]', '', title).strip()
+    # Convert to lowercase and replace spaces with nothing to eliminate spaces completely
+    title = re.sub(r'\s+', '', title).lower()
+    # Take just the first few characters for a concise name
+    title = title[:15]
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     filename = f"{title}_{timestamp}.txt"
 
     # Write to file
-    file_path = os.path.join(textfiles, filename)
+    file_path = os.path.join(location, filename)
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(newtext)
 
     return filename
 
 if __name__ == "__main__":
-    website = input("Enter URL: ")
+    location = os.getcwd()
+    
+    # Check if URL is provided as command line argument
+    if len(sys.argv) > 1:
+        # Remove any quotes from the URL argument
+        website = sys.argv[1].strip('"\'')
+        print(f"Processing URL: {website}\n")
+    else:
+        website = input("Enter URL: ")
+        
     filename = extract_text_from_url(website)
     
     if filename:
-        file_path = os.path.join(textfiles, filename)
+        file_path = os.path.join(location, filename)
         try:
             with open(file_path, "r", encoding='utf-8') as f:
                 file_content = f.read()
